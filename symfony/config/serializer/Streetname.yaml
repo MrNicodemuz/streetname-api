@@ -1,0 +1,23 @@
+App\Entity\Streetname:
+    attributes:
+        streetName:
+            groups:
+                - Street
+        streetNameAlt:
+            groups:
+                - Street
+        postalCode:
+            groups:
+                - Street
+        city:
+            groups:
+                - Street
+        cityAlt:
+            groups:
+                - Street
+        minApartmentNo:
+            groups:
+                - Street
+        maxApartmentNo:
+            groups:
+                - Street

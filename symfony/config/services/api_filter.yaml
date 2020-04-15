@@ -1,0 +1,7 @@
+services:
+    # Api Plantform Filters
+    App\Filter\StreetnameFilter:
+        tags: [ { name: 'api_platform.filter', id: 'streetname.streetname_filter' } ]
+        autowire: false
+        autoconfigure: false
+        public: false

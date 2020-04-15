@@ -1,0 +1,18 @@
+App\Entity\Streetname:
+    collectionOperations:
+        get:
+            method: 'GET'
+            path: '/streets'
+            filters: ['streetname.streetname_filter']
+            normalization_context:
+                groups: ['Street']
+    itemOperations:
+        get:
+            method: 'GET'
+            path: '/street/{id}'
+            normalization_context:
+                groups: ['Street']
+    attributes:
+        pagination_items_per_page: 50
+        maximum_items_per_page: 50
+        pagination_client_items_per_page: true # default query param is itemsPerPage

@@ -1,0 +1,128 @@
+App\Entity\Streetname:
+    type: entity
+    table: streetname
+    repositoryClass: App\Repository\StreetnameRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        type:
+            type: string
+            length: 5
+            options:
+                comment: Record identifier
+        date:
+            type: date
+            options:
+                comment: Running date
+        postal_code:
+            type: string
+            length: 5
+            options:
+                comment: Postal code
+        postal_code_name_finnish:
+            type: string
+            length: 30
+            options:
+                comment: Postal code name in Finnish
+        postal_code_name_swedish:
+            type: string
+            length: 30
+            options:
+                comment: Postal code name in Swedish
+        postal_code_abbreviation_finnish:
+            type: string
+            length: 12
+            options:
+                comment: Postal code abbreviation in Finnish
+        postal_code_abbreviation_swedish:
+            type: string
+            length: 12
+            options:
+                comment: Postal code abbreviation in Swedish
+        location_name_finnish:
+            type: string
+            length: 30
+            options:
+                comment: Location name in Finnish
+        location_name_swedish:
+            type: string
+            length: 30
+            options:
+                comment: Location name in Swedish
+        building_data_type:
+            type: string
+            length: 1
+            options:
+                comment: Building data type
+        min_building_number_1:
+            type: string
+            length: 5
+            options:
+                comment: Building number 1 (smallest building number)
+        min_building_delivery_letter_1:
+            type: string
+            length: 1
+            options:
+                comment: Building delivery letter 1 (smallest building number)
+        min_punctuation_mark:
+            type: string
+            length: 1
+            options:
+                comment: Building delivery letter 2 (smallest building number)
+        min_building_number_2:
+            type: string
+            length: 5
+            options:
+                comment: Building number 2 (smallest building number)
+        min_building_delivery_letter_2:
+            type: string
+            length: 1
+            options:
+                comment: Building delivery letter 2 (smallest building number)
+        max_building_number_1:
+            type: string
+            length: 5
+            options:
+                comment: Building number 1 (highest building number)
+        max_building_delivery_letter_1:
+            type: string
+            length: 1
+            options:
+                comment: Building delivery letter 1 (highest building number)
+        max_punctuation_mark:
+            type: string
+            length: 1
+            options:
+                comment: Building delivery letter 2 (highest building number)
+        max_building_number_2:
+            type: string
+            length: 5
+            options:
+                comment: Building number 2 (highest building number)
+        max_building_delivery_letter_2:
+            type: string
+            length: 1
+            options:
+                comment: Building delivery letter 2 (highest building number)
+        municipality_code:
+            type: string
+            length: 3
+            options:
+                comment: Municipality code
+        municipality_name_finnish:
+            type: string
+            length: 20
+            options:
+                comment: Municipality name in Finnish
+        municipality_name_swedish:
+            type: string
+            length: 20
+            options:
+                comment: Municipality name in Swedish
+    lifecycleCallbacks:
+        prePersist: []
+        postPersist: []

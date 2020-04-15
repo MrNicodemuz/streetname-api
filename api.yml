@@ -1,0 +1,147 @@
+openapi: 3.0.0
+info:
+  title: Street name API
+  description: Service for searching street names
+  version: 1.0.0
+
+tags:
+  - name: "streets"
+paths:
+  /streets:
+    get:
+      tags:
+        - "streets"
+      summary: Returns a list streets by search term. Returns up to 50 items.
+      parameters:
+        - name: street
+          in: query
+          required: true
+          description: Street name search, searches Finnish and Swedish names
+          schema:
+            type : string
+            minimum: 1
+            maximum: 1
+        - name: city
+          in: query
+          required: false
+          description: Street city name search, searches Finnish and Swedish names
+          schema:
+            type : string
+            minimum: 0
+            maximum: 1
+      responses:
+        '200':
+          description: A JSON array of streets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Street'
+        '400':
+          description: Error returned if search parameter is not given or empty
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BadRequestError'
+        '500':
+          description: Error returned if there was an internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/InternalServerError'
+components:
+  schemas:
+    Street:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'Object type, always with value ''Street'''
+          example: 'Street'
+        id:
+          type: string
+          description: 'Unique street ID.'
+          example: '9001'
+        attributes:
+          type: object
+          properties:
+            streetName:
+              type: string
+              description: 'Street name in Finnish.'
+              example: 'Mannerheimintie'
+            streetNameAlt:
+              type: string
+              description: 'Street name in Swedish.'
+              example: 'Mannerheimvägen'
+            postalCode:
+              type: string
+              description: 'Street postal code name.'
+              example: '00100'
+            city:
+              type: string
+              description: 'Street city name in Finnish.'
+              example: 'HELSINKI'
+            cityAlt:
+              type: string
+              description: 'Street city name in Swedish.'
+              example: 'HELSINGFORS'
+            minApartmentNo:
+              type: string
+              description: 'Minimum house number for given street and postal code.'
+              example: '1'
+            maxApartmentNo:
+              type: string
+              description: 'Maximum house number for given street and postal code.'
+              example: '13-15'
+    BadRequestError:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'Unique error ID.'
+          example: 'e0aaa015-1239-4da5-9ff6-4bb3a061833e'
+        status:
+          type: string
+          description: 'HTTP status code.'
+          example: '400'
+        title:
+          type: string
+          description: 'Error title.'
+          example: 'Parameter not given'
+        detail:
+          type: string
+          description: 'Error description.'
+          example: 'Parameter ''search'' not given or empty'
+    InternalServerError:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'Unique error ID.'
+          example: '026bcd7b-7fee-4c8e-8b95-8c9109cf2941'
+        status:
+          type: string
+          description: 'HTTP status code.'
+          example: '500'
+        title:
+          type: string
+          description: 'Error title.'
+          example: 'Internal server error'
+        detail:
+          type: string
+          description: 'Error description.'
+          example: 'Please contact customer support'
